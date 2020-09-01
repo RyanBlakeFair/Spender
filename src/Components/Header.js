@@ -27,7 +27,7 @@ function Header({ getID }) {
           className="text-xl mx-2 px-2 border-2 rounded border-yellow-500"
           onClick={() =>
             getID(
-              startDate.toString().split(" ").splice(0, 4).join(" "),
+              startDate.toString().split(" ").splice(0, 3).join(" "),
               startDate
             )
           }
