@@ -9,7 +9,7 @@ function Header({ getID }) {
     <header className="justify-center text-center pt-4">
       <p className="text-4xl font-bold text-white">
         <span role="img" aria-label="dollar">
-          CHECK MY DOSH
+          TRACK MY DOSH
         </span>
       </p>
 
