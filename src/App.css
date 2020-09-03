@@ -6,7 +6,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-gap: 20px;
-  grid-column: 3;
   align-items: stretch;
   padding: 1rem;
 }
