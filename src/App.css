@@ -10,6 +10,14 @@
   padding: 1rem;
 }
 
+.chartGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+  padding: 1rem;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/css?family=Handlee);
 
@@ -78,5 +86,22 @@ footer a {
   }
   50% {
     -webkit-transform: rotate(1deg);
+  }
+}
+
+.dateCal:hover {
+  cursor: pointer;
+}
+
+.scale-up-center {
+  animation: scale-up-center 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+
+@keyframes scale-up-center {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
   }
 }

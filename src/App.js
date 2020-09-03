@@ -4,6 +4,7 @@ import "./App.css";
 
 import Header from "./Components/Header";
 import TileGrid from "./Components/TileGrid";
+import Stats from "./Components/Stats";
 
 const LOCAL_STORAGE_KEY = "react-spender";
 
@@ -22,9 +23,8 @@ function App() {
   }, [tileArr]);
 
   function getID(date, realDate) {
-    console.log(realDate);
     if (tileArr.includes(date)) return;
-    setTileArr(tileArr.concat(date));
+    setTileArr([date, ...tileArr]);
   }
 
   function removeTile(id) {
@@ -35,6 +35,7 @@ function App() {
     <div className="mainpage bg-gray-800">
       <Header getID={getID} />
       <TileGrid tiles={tileArr} removeTile={removeTile} />
+      <Stats />
     </div>
   );
 }

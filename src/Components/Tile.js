@@ -25,10 +25,6 @@ function Tile(props) {
     setTile({ ...tile, pay: p.target.value });
   }
 
-  // function setWeek(w) {
-  //   setTile({ ...tile, week: w.target.value });
-  // }
-
   function setCost(c) {
     setToAdd({ ...toAdd, cost: c.target.value });
   }
@@ -75,7 +71,9 @@ function Tile(props) {
   let totalSpent = 0;
   tile.expenses.forEach((expense) => (totalSpent += Number(expense.cost)));
 
-  let totalSaved = tile.pay - totalSpent;
+  let totalSaved = Math.round((tile.pay - totalSpent) * 100) / 100;
+
+  const showPay = tile.pay.length > 0 ? tile.pay : "Enter Pay";
 
   const pay = uuidv4();
   const spendList = uuidv4();
@@ -83,20 +81,11 @@ function Tile(props) {
   const expenseItem = uuidv4();
 
   return (
-    <div className="paper bg-white rounded px-4 pt-2 pb-2 pl-10">
+    <div className="scale-up-center paper bg-white rounded px-4 pt-2 pb-2 pl-10">
       <h1 className="font-bold text-lg">
         {" "}
         <span role="img" aria-label="cal" className="flex flex-row">
-          📅{" "}
-          {/* <input
-            type="text"
-            placeholder="Week Start"
-            className="bg-white ml-2 text-center"
-            value={tile.week}
-            onChange={setWeek}
-            style={{ width: "70%" }}
-          /> */}
-          {tile.week}
+          📅 {tile.week}
           <button
             className="ml-auto jiggle"
             style={{ outline: "none" }}
@@ -118,9 +107,9 @@ function Tile(props) {
         <input
           id={pay}
           type="text"
-          placeholder="Pay"
+          placeholder={showPay}
           className="bg-white ml-auto text-right"
-          style={{ width: "4rem" }}
+          style={{ width: "5rem" }}
           onChange={setPay}
         />
       </div>

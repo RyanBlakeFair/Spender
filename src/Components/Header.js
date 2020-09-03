@@ -15,7 +15,7 @@ function Header({ getID }) {
 
       <div className="flex flex-row justify-center text-center h-10 my-2 ml-2 text-white">
         <DatePicker
-          className="bg-gray-800 text-white rounded text-center border-2 py-1 text-xl border-purple-500"
+          className="bg-gray-800 text-white rounded text-center border-2 py-1 text-xl border-purple-500 dateCal"
           selected={startDate}
           onChange={(date) => {
             setStartDate(date);
