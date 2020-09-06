@@ -105,3 +105,13 @@ footer a {
     transform: scale(1);
   }
 }
+
+svg {
+  fill: #fff;
+}
+
+.footer {
+  display: "block";
+  height: "60px";
+  width: "100%";
+}

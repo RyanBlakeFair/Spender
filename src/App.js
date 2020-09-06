@@ -5,9 +5,11 @@ import "./App.css";
 import Header from "./Components/Header";
 import TileGrid from "./Components/TileGrid";
 import Stats from "./Components/Stats";
+import Footer from "./Components/Footer";
 
 const LOCAL_STORAGE_KEY = "react-spender";
 
+// SAVE TO LOCAL STORAGE
 function App() {
   const [tileArr, setTileArr] = useState([]);
 
@@ -22,6 +24,7 @@ function App() {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tileArr));
   }, [tileArr]);
 
+  // SETTING ARRAY OF TILES
   function getID(date, realDate) {
     if (tileArr.includes(date)) return;
     setTileArr([date, ...tileArr]);
@@ -35,7 +38,8 @@ function App() {
     <div className="mainpage bg-gray-800">
       <Header getID={getID} />
       <TileGrid tiles={tileArr} removeTile={removeTile} />
-      <Stats />
+      <Stats tileID={tileArr} />
+      <Footer />
     </div>
   );
 }

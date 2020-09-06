@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import { v4 as uuidv4 } from "uuid";
+import { addTile } from "../actions";
+import { useDispatch } from "react-redux";
 
 function Tile(props) {
   const [tile, setTile] = useState(
@@ -10,9 +12,11 @@ function Tile(props) {
       expenses: [],
     }
   );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     localStorage.setItem(tile.week, JSON.stringify(tile));
+    dispatch(addTile(tile));
   }, [tile]);
 
   const [toAdd, setToAdd] = useState({ item: "", cost: 0 });
