@@ -120,7 +120,7 @@ function Tile(props) {
             💰 Total Spent:
           </span>
         </p>
-        <p className="ml-auto">${totalSpent}</p>
+        <p className="ml-auto">${Math.round(totalSpent * 100) / 100}</p>
       </div>
       <div className="flex flex-row mt-1">
         <p>

@@ -13,17 +13,26 @@ function Stats(props) {
 
   let spendList = props.tileID.map((item) => {
     return (
-      JSON.parse(localStorage.getItem(item) || "{}").expenses || []
-    ).reduce((a, b) => a + parseFloat(b.cost), 0);
+      (Math.round(
+        (JSON.parse(localStorage.getItem(item) || "{}").expenses || []).reduce(
+          (a, b) => a + parseFloat(b.cost),
+          0
+        )
+      ) *
+        100) /
+      100
+    );
   });
 
   let saveList = props.tileID.map((item) => {
     return (
-      (JSON.parse(localStorage.getItem(item) || "{}").pay || 0) -
-      (JSON.parse(localStorage.getItem(item) || "{}").expenses || []).reduce(
-        (a, b) => a + parseFloat(b.cost),
-        0
-      )
+      Math.round(
+        ((JSON.parse(localStorage.getItem(item) || "{}").pay || 0) -
+          (
+            JSON.parse(localStorage.getItem(item) || "{}").expenses || []
+          ).reduce((a, b) => a + parseFloat(b.cost), 0)) *
+          100
+      ) / 100
     );
   });
 
@@ -135,7 +144,7 @@ function Stats(props) {
       },
     },
     yaxis: {
-      min: Math.min.apply(Math, spendList),
+      min: Math.min.apply(Math, saveList),
       max: Math.max.apply(Math, saveList),
       labels: {
         show: false,
@@ -192,7 +201,7 @@ function Stats(props) {
       },
     },
     yaxis: {
-      min: Math.min.apply(Math, spendList),
+      min: Math.min.apply(Math, payList),
       max: Math.max.apply(Math, payList),
       labels: {
         show: false,
