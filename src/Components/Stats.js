@@ -6,20 +6,6 @@ function refreshPage() {
 }
 
 function Stats(props) {
-  // RETRIVE REDUX STATE
-
-  // const tileData = useSelector((state) => state.tiles);
-  // const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-  // useEffect(() => {
-  //   wait(1 * 1000).then(() => {
-  //     tileData.forEach((weekData) => {
-  //       console.log(weekData.pay);
-  //       console.log(weekData.week);
-  //       console.log(weekData.expenses);
-  //     });
-  //   });
-  // }, []);
-
   // LIST DATA
   let payList = props.tileID.map((item) => {
     return JSON.parse(localStorage.getItem(item) || "{}").pay || 0;
@@ -48,11 +34,11 @@ function Stats(props) {
   payTotal = Math.round((payTotal / payList.length) * 100) / 100;
 
   var spendTotal = 0;
-  // spendList.forEach((spent) => (spendTotal += spent));
-  // spendTotal = Math.round((spendTotal / spendList.length) * 100) / 100;
+  spendList.forEach((spent) => (spendTotal += parseFloat(spent)));
+  spendTotal = Math.round((spendTotal / spendList.length) * 100) / 100;
 
   var saveTotal = 0;
-  saveList.forEach((saved) => (saveTotal += saved));
+  saveList.forEach((saved) => (saveTotal += parseFloat(saved)));
   saveTotal = Math.round((saveTotal / saveList.length) * 100) / 100;
 
   // GRAPH DATA
