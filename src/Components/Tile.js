@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import { v4 as uuidv4 } from "uuid";
-import { addTile } from "../actions";
-import { useDispatch } from "react-redux";
 
 function Tile(props) {
   const [tile, setTile] = useState(
@@ -12,11 +10,9 @@ function Tile(props) {
       expenses: [],
     }
   );
-  const dispatch = useDispatch();
 
   useEffect(() => {
     localStorage.setItem(tile.week, JSON.stringify(tile));
-    dispatch(addTile(tile));
   }, [tile]);
 
   const [toAdd, setToAdd] = useState({ item: "", cost: 0 });
@@ -60,6 +56,7 @@ function Tile(props) {
     <li className="pl-1 flex flex-row" key={i}>
       {tile.item} <p className="ml-auto pr-4">${tile.cost}</p>
       <button
+        className="jiggle"
         onClick={() => {
           removeExpense(i);
         }}
@@ -150,7 +147,7 @@ function Tile(props) {
             style={{ outline: "none" }}
             type="submit"
             onClick={submitAdd}
-            className="mt-2 ml-auto"
+            className="mt-2 ml-auto jiggle"
           >
             <span role="img" aria-label="plus">
               ➕

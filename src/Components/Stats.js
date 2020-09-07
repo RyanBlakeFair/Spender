@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ReactApexChart from "react-apexcharts";
-import { useSelector } from "react-redux";
 
 function refreshPage() {
   window.location.reload(false);
@@ -8,10 +7,9 @@ function refreshPage() {
 
 function Stats(props) {
   // RETRIVE REDUX STATE
-  const tileData = useSelector((state) => state.tiles);
 
+  // const tileData = useSelector((state) => state.tiles);
   // const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
   // useEffect(() => {
   //   wait(1 * 1000).then(() => {
   //     tileData.forEach((weekData) => {
@@ -22,24 +20,36 @@ function Stats(props) {
   //   });
   // }, []);
 
-  props.tileID.forEach((weekData) => {
-    const weekDataObj = JSON.parse(localStorage.getItem(weekData));
-    console.log(weekDataObj);
+  // LIST DATA
+  let payList = props.tileID.map((item) => {
+    return JSON.parse(localStorage.getItem(item) || "{}").pay || 0;
   });
 
-  // LIST DATA
-  let [payList, setPayList] = useState([400, 550, 600]);
-  let [spendList, setSpendList] = useState([350, 400, 250]);
-  let [saveList, setSaveList] = useState([50, 150, 400]);
-  let [weekList, setWeekList] = useState(["5th sep", "6th sep", "7th sep"]);
+  let spendList = props.tileID.map((item) => {
+    return (
+      JSON.parse(localStorage.getItem(item) || "{}").expenses || []
+    ).reduce((a, b) => a + parseFloat(b.cost), 0);
+  });
+
+  let saveList = props.tileID.map((item) => {
+    return (
+      (JSON.parse(localStorage.getItem(item) || "{}").pay || 0) -
+      (JSON.parse(localStorage.getItem(item) || "{}").expenses || []).reduce(
+        (a, b) => a + parseFloat(b.cost),
+        0
+      )
+    );
+  });
+
+  const weekList = props.tileID;
 
   var payTotal = 0;
-  payList.forEach((paycheck) => (payTotal += paycheck));
+  payList.forEach((paycheck) => (payTotal += parseFloat(paycheck)));
   payTotal = Math.round((payTotal / payList.length) * 100) / 100;
 
   var spendTotal = 0;
-  spendList.forEach((spent) => (spendTotal += spent));
-  spendTotal = Math.round((spendTotal / spendList.length) * 100) / 100;
+  // spendList.forEach((spent) => (spendTotal += spent));
+  // spendTotal = Math.round((spendTotal / spendList.length) * 100) / 100;
 
   var saveTotal = 0;
   saveList.forEach((saved) => (saveTotal += saved));
@@ -82,7 +92,7 @@ function Stats(props) {
       },
     },
     yaxis: {
-      min: -10,
+      min: Math.min.apply(Math, spendList),
       max: Math.max.apply(Math, spendList),
       labels: {
         show: false,
@@ -139,7 +149,7 @@ function Stats(props) {
       },
     },
     yaxis: {
-      min: -10,
+      min: Math.min.apply(Math, spendList),
       max: Math.max.apply(Math, saveList),
       labels: {
         show: false,
@@ -196,7 +206,7 @@ function Stats(props) {
       },
     },
     yaxis: {
-      min: -10,
+      min: Math.min.apply(Math, spendList),
       max: Math.max.apply(Math, payList),
       labels: {
         show: false,
