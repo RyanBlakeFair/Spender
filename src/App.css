@@ -18,6 +18,15 @@
   padding: 1rem;
 }
 
+@media (min-width: 1300px) {
+  .grid {
+    grid-template-columns: repeat(5, minmax(240px, 1fr));
+  }
+  .chartGrid {
+    grid-template-columns: repeat(3, minmax(400px, 1fr));
+  }
+}
+
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/css?family=Handlee);
 

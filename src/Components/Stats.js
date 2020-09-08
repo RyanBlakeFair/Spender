@@ -223,7 +223,7 @@ function Stats(props) {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <section id="stats" className="flex flex-col items-center">
       <div className="flex flex-row">
         <h1
           style={{ width: "12rem" }}
@@ -260,7 +260,7 @@ function Stats(props) {
           type="area"
         />
       </div>
-    </div>
+    </section>
   );
 }
 
