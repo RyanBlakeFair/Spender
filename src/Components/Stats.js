@@ -100,7 +100,9 @@ function Stats(props) {
       },
       max: spendList.length,
       title: {
-        text: "Average Spending: $" + spendTotal,
+        text: isNaN(spendTotal)
+          ? "Treat yourself..."
+          : "Average Spending: $" + spendTotal,
         style: {
           color: "#fff",
         },
@@ -157,7 +159,9 @@ function Stats(props) {
       },
       max: saveList.length,
       title: {
-        text: "Average Saving: $" + saveTotal,
+        text: isNaN(saveTotal)
+          ? "Start Saving..."
+          : "Average Saving: $" + saveTotal,
         style: {
           color: "#fff",
         },
@@ -214,7 +218,9 @@ function Stats(props) {
       },
       max: payList.length,
       title: {
-        text: "Average Income: $" + payTotal,
+        text: isNaN(payTotal)
+          ? "Is it payday yet..."
+          : "Average Income: $" + payTotal,
         style: {
           color: "#fff",
         },

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./tailwind.css";
 import "./App.css";
+import { motion } from "framer-motion";
 
 import Header from "./Components/Header";
 import TileGrid from "./Components/TileGrid";
@@ -38,7 +39,10 @@ function App() {
     <div className="mainpage bg-gray-800">
       <Header getID={getID} />
       <TileGrid tiles={tileArr} removeTile={removeTile} />
-      <Stats tileID={tileArr} />
+      <motion.div layout>
+        <Stats tileID={tileArr} />
+      </motion.div>
+
       <Footer />
     </div>
   );
