@@ -42,7 +42,6 @@ function App() {
       <motion.div layout>
         <Stats tileID={tileArr} />
       </motion.div>
-
       <Footer />
     </div>
   );

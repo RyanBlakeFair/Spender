@@ -16,18 +16,18 @@ function TileGrid(props) {
     <div className="grid">
       {props.tiles.length > 0
         ? props.tiles.map((tile) => (
-            <motion.div layout key={tile}>
-              <Tile id={tile} removeTile={props.removeTile} />
-            </motion.div>
-          ))
+          <motion.div layout key={tile}>
+            <Tile id={tile} removeTile={props.removeTile} />
+          </motion.div>
+        ))
         : welcome.map((message) => (
-            <p
-              key={message}
-              className="text-white text-xl text-center font-bold py-10"
-            >
-              {message}
-            </p>
-          ))}
+          <p
+            key={message}
+            className="text-white text-xl text-center font-bold py-10"
+          >
+            {message}
+          </p>
+        ))}
     </div>
   );
 }
